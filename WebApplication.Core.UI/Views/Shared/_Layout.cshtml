@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication.Core.UI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/dist/bundle.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -37,12 +36,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - WebApplication.Core.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span class="pull-left" id="yearSpan">&copy; @DateTime.Now.Year - My ASP.NET Application</span>
+
+            @*<span class="pull-right">Version: @ViewContext.Controller.GetType().Assembly.GetName().Version</span>*@
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    <script src="~/dist/bundle.js" asp-append-version="true"></script>
 </body>
+@RenderSection("scripts", required: false)
 </html>
