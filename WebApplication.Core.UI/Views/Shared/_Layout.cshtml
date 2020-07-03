@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="~/dist/bundle.css" asp-append-version="true" />
 </head>
 <body>
+    @{
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        if (env != "Production")
+        {
+            <div class="alert alert-info text-center" role="alert">
+                Environment: <strong>@env</strong>.
+            </div>
+        }
+    }
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -28,19 +39,20 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <span class="pull-left" id="yearSpan">&copy; @DateTime.Now.Year - My ASP.NET Application</span>
-
-            @*<span class="pull-right">Version: @ViewContext.Controller.GetType().Assembly.GetName().Version</span>*@
-        </div>
+    <footer class="border-top footer">
+            <div class="container">
+                <span class="float-left">&copy; @DateTime.Now.Year - My ASP.NET Core Application</span>
+                <span class="float-right">Version: @GetType().Assembly.GetName().Version</span>
+            </div>
     </footer>
+
     <script src="~/dist/bundle.js" asp-append-version="true"></script>
 </body>
 @RenderSection("scripts", required: false)
