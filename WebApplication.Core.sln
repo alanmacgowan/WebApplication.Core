@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.UI", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Tests.Unit", "WebApplication.Core.Tests.Unit\WebApplication.Core.Tests.Unit.csproj", "{0987D3D7-6870-4656-8710-7476D1FC3C96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Tests.Acceptance", "WebApplication.Core.Tests.Acceptance\WebApplication.Core.Tests.Acceptance.csproj", "{A32DDE22-1279-40A0-B48D-3371009241F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0987D3D7-6870-4656-8710-7476D1FC3C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0987D3D7-6870-4656-8710-7476D1FC3C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0987D3D7-6870-4656-8710-7476D1FC3C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A32DDE22-1279-40A0-B48D-3371009241F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A32DDE22-1279-40A0-B48D-3371009241F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A32DDE22-1279-40A0-B48D-3371009241F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A32DDE22-1279-40A0-B48D-3371009241F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
