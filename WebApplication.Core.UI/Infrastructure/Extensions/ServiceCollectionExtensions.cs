@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using WebApplication.Core.Data.Concrete;
-using WebApplication.Core.Data.Interfaces;
-
 namespace WebApplication.Core.UI.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions

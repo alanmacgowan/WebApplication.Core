@@ -23,7 +23,6 @@ namespace WebApplication.Core.UI.Infrastructure.Services
             var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync("api/employees", employeeJson);
-            response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {

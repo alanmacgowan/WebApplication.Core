@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication.Core.Data.Interfaces;
+using WebApplication.Core.Data;
 using WebApplication.Core.Domain;
 
 namespace WebApplication.Core.API.Controllers
@@ -11,18 +12,18 @@ namespace WebApplication.Core.API.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : ControllerBase
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly WebApplicationContext _dataContext;
 
-        public EmployeesController(IEmployeeRepository employeeRepository)
+        public EmployeesController(WebApplicationContext dataContext)
         {
-            _employeeRepository = employeeRepository;
+            _dataContext = dataContext;
         }
 
         // GET: api/employees
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
-            var results = await _employeeRepository.GetAllEmployeesAsync();
+            var results = await _dataContext.Employees.AsNoTracking().ToListAsync();
 
             return results.ToList();
         }
@@ -31,7 +32,7 @@ namespace WebApplication.Core.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var result = await _employeeRepository.GetEmployeeByIdAsync(id);
+            var result = await _dataContext.Employees.SingleOrDefaultAsync(x => x.Id == id);
             if (result == null) return NotFound();
 
             return result;
@@ -41,7 +42,8 @@ namespace WebApplication.Core.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> Post(Employee employee)
         {
-            var result = await _employeeRepository.CreateEmployeeAsync(employee);
+            var result = await _dataContext.AddAsync(employee);
+            await _dataContext.SaveChangesAsync();
             if (result != null)
             {
                 return Created("employee", result);
@@ -56,7 +58,8 @@ namespace WebApplication.Core.API.Controllers
         [HttpPut]
         public async Task<ActionResult<Employee>> Put(Employee employee)
         {
-            await _employeeRepository.EditEmployeeAsync(employee);
+            _dataContext.Update(employee);
+            await _dataContext.SaveChangesAsync();
 
             return NoContent();
         }
@@ -65,10 +68,11 @@ namespace WebApplication.Core.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var oldEmployee = await _employeeRepository.GetEmployeeByIdAsync(id);
-            if (oldEmployee == null) return NotFound();
+            var result = await _dataContext.Employees.SingleOrDefaultAsync(x => x.Id == id);
+            if (result == null) return NotFound();
 
-            await _employeeRepository.DeleteEmployeeAsync(oldEmployee);
+            _dataContext.Remove(result);
+            await _dataContext.SaveChangesAsync();
 
             return NoContent();
         }
