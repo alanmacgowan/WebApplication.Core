@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace WebApplication.Core.UI.Data.Infrastructure
+namespace WebApplication.Core.Data.Infrastructure
 {
     public static class IQueryableExtensions
     {

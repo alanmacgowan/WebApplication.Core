@@ -1,28 +1,27 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using System.Threading.Tasks;
-using WebApplication.Core.UI.Data.Interfaces;
-using WebApplication.Core.UI.Entities;
+using WebApplication.Core.Domain;
+using WebApplication.Core.UI.Infrastructure.Services;
 using WebApplication.Core.UI.Models;
 
 namespace WebApplication.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeService _employeeService;
         private readonly IMapper _mapper;
 
-        public EmployeesController(IEmployeeRepository employeeRepository, IMapper mapper)
+        public EmployeesController(IEmployeeService employeeService, IMapper mapper)
         {
-            _employeeRepository = employeeRepository;
+            _employeeService = employeeService;
             _mapper = mapper;
         }
 
         // GET: Employees
         public async Task<ActionResult> Index()
         {
-            var results = await _employeeRepository.GetAllEmployeesAsync();
+            var results = await _employeeService.GetAllEmployeesAsync();
 
             return View(_mapper.Map<EmployeeViewModel[]>(results));
         }
@@ -30,7 +29,7 @@ namespace WebApplication.Controllers
         // GET: Employees/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var result = await _employeeRepository.GetEmployeeByIdAsync(id);
+            var result = await _employeeService.GetEmployeeByIdAsync(id);
             if (result == null) return NotFound();
 
             return View(_mapper.Map<EmployeeViewModel>(result));
@@ -48,7 +47,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _employeeRepository.CreateEmployeeAsync(_mapper.Map<Employee>(employee));
+                await _employeeService.CreateEmployeeAsync(_mapper.Map<Employee>(employee));
                 return RedirectToAction("Index");
             }
 
@@ -58,7 +57,7 @@ namespace WebApplication.Controllers
         // GET: Employees/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var result = await _employeeRepository.GetEmployeeByIdAsync(id);
+            var result = await _employeeService.GetEmployeeByIdAsync(id);
             if (result == null) return NotFound();
 
             return View(_mapper.Map<EmployeeViewModel>(result));
@@ -69,9 +68,9 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _employeeRepository.GetEmployeeByIdAsync(employee.Id);
+                var result = await _employeeService.GetEmployeeByIdAsync(employee.Id);
                 _mapper.Map(employee, result);
-                await _employeeRepository.EditEmployeeAsync(result);
+                await _employeeService.EditEmployeeAsync(result);
 
                 return RedirectToAction("Index");
             }
@@ -81,7 +80,7 @@ namespace WebApplication.Controllers
         // GET: Employees/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _employeeRepository.GetEmployeeByIdAsync(id);
+            var result = await _employeeService.GetEmployeeByIdAsync(id);
             if (result == null) return NotFound();
 
             return View(_mapper.Map<EmployeeViewModel>(result));
@@ -92,8 +91,8 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            var result = await _employeeRepository.GetEmployeeByIdAsync(id);
-            await _employeeRepository.DeleteEmployeeAsync(result);
+            var result = await _employeeService.GetEmployeeByIdAsync(id);
+            await _employeeService.DeleteEmployeeAsync(result);
 
             return RedirectToAction("Index");
         }

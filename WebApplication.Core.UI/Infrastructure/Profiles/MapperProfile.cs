@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WebApplication.Core.UI.Entities;
+using WebApplication.Core.Domain;
 using WebApplication.Core.UI.Models;
 
 namespace FootballStats.API.Infrastructure.Profiles

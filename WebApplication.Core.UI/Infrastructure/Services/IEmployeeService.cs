@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using WebApplication.Core.UI.Entities;
+using WebApplication.Core.Domain;
 
-namespace WebApplication.Core.UI.Data.Interfaces
+namespace WebApplication.Core.UI.Infrastructure.Services
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeService
     {
         Task<IEnumerable<Employee>> GetAllEmployeesAsync();
         Task<Employee> GetEmployeeByIdAsync(int id);
         Task<Employee> CreateEmployeeAsync(Employee employee);
-        Task<Employee> EditEmployeeAsync(Employee employee);
+        Task EditEmployeeAsync(Employee employee);
         Task DeleteEmployeeAsync(Employee employee);
     }
 }

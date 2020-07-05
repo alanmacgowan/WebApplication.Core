@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplication.Core.UI.Entities
+namespace WebApplication.Core.Domain
 {
     [Table("Employees")]
     public class Employee : BaseEntity

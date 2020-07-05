@@ -1,16 +1,21 @@
-using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using WebApplication.Core.API.Infrastructure.Extensions;
 using WebApplication.Core.Data;
-using WebApplication.Core.UI.Infrastructure.Extensions;
-using WebApplication.Core.UI.Infrastructure.Services;
 
-namespace WebApplication.Core.UI
+namespace WebApplication.Core.API
 {
     public class Startup
     {
@@ -24,17 +29,16 @@ namespace WebApplication.Core.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddCustomServices();
 
-            services.AddAutoMapper(typeof(Startup));
+            services.AddControllers();
 
-            services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
+            services.AddDbContext<WebApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WEBAPPLICATION_DB")));
+
+            services.AddSwaggerGen(options =>
             {
-                client.BaseAddress = new Uri(Configuration.GetSection("WebApplicationAPI_URL").Value);
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication.Core API", Version = "v1" });
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,14 +48,15 @@ namespace WebApplication.Core.UI
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication.Core API V1");
+            });
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -59,9 +64,7 @@ namespace WebApplication.Core.UI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

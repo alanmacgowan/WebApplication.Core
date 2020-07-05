@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApplication.Core.UI.Data.Interfaces;
-using WebApplication.Core.UI.Entities;
+using WebApplication.Core.Data.Interfaces;
+using WebApplication.Core.Domain;
 
-namespace WebApplication.Core.UI.Data.Concrete
+namespace WebApplication.Core.Data.Concrete
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {

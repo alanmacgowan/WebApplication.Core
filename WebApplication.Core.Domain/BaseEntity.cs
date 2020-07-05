@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication.Core.UI.Entities
+namespace WebApplication.Core.Domain
 {
     public class BaseEntity
     {
