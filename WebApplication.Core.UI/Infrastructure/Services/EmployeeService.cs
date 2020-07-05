@@ -20,8 +20,7 @@ namespace WebApplication.Core.UI.Infrastructure.Services
 
         public async Task<Employee> CreateEmployeeAsync(Employee employee)
         {
-            var employeeJson =
-                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync("api/employees", employeeJson);
             response.EnsureSuccessStatusCode();
@@ -41,8 +40,7 @@ namespace WebApplication.Core.UI.Infrastructure.Services
 
         public async Task EditEmployeeAsync(Employee employee)
         {
-            var employeeJson =
-                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            var employeeJson = new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
 
             await _httpClient.PutAsync("api/employees", employeeJson);
         }
