@@ -9,13 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Tests.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Tests.Acceptance", "WebApplication.Core.Tests.Acceptance\WebApplication.Core.Tests.Acceptance.csproj", "{A32DDE22-1279-40A0-B48D-3371009241F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Domain", "WebApplication.Core.Domain\WebApplication.Core.Domain.csproj", "{BB9DC21D-1321-45B7-A1A4-408641EE43C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Domain", "WebApplication.Core.Domain\WebApplication.Core.Domain.csproj", "{BB9DC21D-1321-45B7-A1A4-408641EE43C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Data", "WebApplication.Core.Data\WebApplication.Core.Data.csproj", "{C4D353BD-0D4D-47B5-980A-DADC27996247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Data", "WebApplication.Core.Data\WebApplication.Core.Data.csproj", "{C4D353BD-0D4D-47B5-980A-DADC27996247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.API", "WebApplication.Core.API\WebApplication.Core.API.csproj", "{C0AB39AA-1B83-430E-86CF-CD6E7622E03C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.API", "WebApplication.Core.API\WebApplication.Core.API.csproj", "{C0AB39AA-1B83-430E-86CF-CD6E7622E03C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Tests.Integration", "WebApplication.Core.Tests.Integration\WebApplication.Core.Tests.Integration.csproj", "{854DAFC7-2083-41B9-8FDD-8050A00F9269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Tests.Integration", "WebApplication.Core.Tests.Integration\WebApplication.Core.Tests.Integration.csproj", "{854DAFC7-2083-41B9-8FDD-8050A00F9269}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Performance Tests", "Performance Tests", "{300FDCFA-0026-4740-9073-39BEF9EDECB6}"
+	ProjectSection(SolutionItems) = preProject
+		Performance Tests\k6_script.js = Performance Tests\k6_script.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
