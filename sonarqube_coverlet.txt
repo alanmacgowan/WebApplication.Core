@@ -1,0 +1,7 @@
+dotnet test WebApplication.Core.Tests.Unit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+dotnet sonarscanner begin /k:"webapplication.core" /d:sonar.host.url=http://localhost:9000 /d:sonar.cs.opencover.reportsPaths=WebApplication.Core.Tests.Unit/coverage.opencover.xml /d:sonar.coverage.exclusions=”**Test*.cs”
+
+dotnet build WebApplication.Core.sln
+
+dotnet sonarscanner end

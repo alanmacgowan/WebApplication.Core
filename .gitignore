@@ -353,3 +353,4 @@ wwwroot/dist/
 
 /WebApplication.Core.UI/wwwroot/dist/bundle.js
 /WebApplication.Core.UI/wwwroot/dist/bundle.css
+/.sonarqube
