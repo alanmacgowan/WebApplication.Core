@@ -32,6 +32,24 @@ module.exports = (env, argv) => {
                             },
                             'sass-loader'
                         ]
+                },
+
+                // All image files will be handled here
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: [
+                        "file-loader"
+                    ]
+                },
+
+                // All font files will be handled here
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    use: [
+                        {
+                            loader: "file-loader"
+                        }
+                    ]
                 }
             ]
         },

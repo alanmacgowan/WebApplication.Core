@@ -18,7 +18,6 @@ namespace WebApplication.Controllers
             _mapper = mapper;
         }
 
-        // GET: Employees
         public async Task<ActionResult> Index()
         {
             var results = await _employeeService.GetAllEmployeesAsync();
@@ -26,7 +25,6 @@ namespace WebApplication.Controllers
             return View(_mapper.Map<EmployeeViewModel[]>(results));
         }
 
-        // GET: Employees/Details/5
         public async Task<ActionResult> Details(int id)
         {
             var result = await _employeeService.GetEmployeeByIdAsync(id);
@@ -35,7 +33,6 @@ namespace WebApplication.Controllers
             return View(_mapper.Map<EmployeeViewModel>(result));
         }
 
-        // GET: Employees/Create
         public ActionResult Create()
         {
             return View();
@@ -54,7 +51,6 @@ namespace WebApplication.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var result = await _employeeService.GetEmployeeByIdAsync(id);
@@ -77,7 +73,6 @@ namespace WebApplication.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _employeeService.GetEmployeeByIdAsync(id);
@@ -86,7 +81,6 @@ namespace WebApplication.Controllers
             return View(_mapper.Map<EmployeeViewModel>(result));
         }
 
-        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

@@ -1,14 +1,14 @@
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using WebApplication.Core.Data;
 using WebApplication.Core.UI.Infrastructure.Extensions;
 using WebApplication.Core.UI.Infrastructure.Services;
+using WebApplication.Core.UI.Models;
 
 namespace WebApplication.Core.UI
 {
@@ -24,7 +24,8 @@ namespace WebApplication.Core.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EmployeeViewModelValidator>());
 
             services.AddCustomServices();
 
