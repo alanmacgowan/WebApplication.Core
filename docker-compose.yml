@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+    sqldata:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+
+    webapplicationcore-api:
+        image: ${DOCKER_REGISTRY-}webapplication.core.api
+        build: 
+            context: .
+            dockerfile: ./WebApplication.Core.API/Dockerfile
+        depends_on:
+            - sqldata
+
+    webapplicationcore-ui:
+        image: ${DOCKER_REGISTRY-}webapplication.core.ui
+        build: 
+            context: .
+            dockerfile: ./WebApplication.Core.UI/Dockerfile
+        depends_on:
+            - sqldata
+            - webapplicationcore-api

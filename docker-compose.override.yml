@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+    sqldata:
+        environment:
+            - SA_PASSWORD=Pass@word
+            - ACCEPT_EULA=Y
+        ports:
+            - "5433:1433"
+
+    webapplicationcore-api:
+        ports:
+            - "8048:80"
+            - "44348:443"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - ConnectionString=Server=sqldata;Database=Database;User Id=sa;Password=Pass@word
+
+    webapplicationcore-ui:
+        ports:
+            - "8040:80"
+            - "44340:443"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - WebApplicationAPIUrl=http://webapplicationcore-api

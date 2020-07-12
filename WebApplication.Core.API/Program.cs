@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using WebApplication.Core.API.Infrastructure.Extensions;
+using WebApplication.Core.Data;
 
 namespace WebApplication.Core.API
 {
@@ -13,7 +9,7 @@ namespace WebApplication.Core.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().MigrateDatabase<WebApplicationContext>().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -33,7 +33,7 @@ namespace WebApplication.Core.API
 
             services.AddControllers();
 
-            services.AddDbContext<WebApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WEBAPPLICATION_DB")));
+            services.AddDbContext<WebApplicationContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddSwaggerGen(options =>
             {

@@ -5,3 +5,9 @@ dotnet sonarscanner begin /k:"webapplication.core" /d:sonar.host.url=http://loca
 dotnet build WebApplication.Core.sln
 
 dotnet sonarscanner end
+
+
+=============================
+
+docker-compose build web
+docker-compose up --no-deps -d web

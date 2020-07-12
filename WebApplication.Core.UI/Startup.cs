@@ -33,7 +33,7 @@ namespace WebApplication.Core.UI
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
             {
-                client.BaseAddress = new Uri(Configuration.GetSection("WebApplicationAPI_URL").Value);
+                client.BaseAddress = new Uri(Configuration["WebApplicationAPIUrl"]);
             });
 
         }
