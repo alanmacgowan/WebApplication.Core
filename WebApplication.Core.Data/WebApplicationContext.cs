@@ -3,7 +3,7 @@ using WebApplication.Core.Domain;
 
 namespace WebApplication.Core.Data
 {
-    public class WebApplicationContext : DbContext
+    public partial class WebApplicationContext : DbContext
     {
         public WebApplicationContext()
         {
@@ -14,7 +14,13 @@ namespace WebApplication.Core.Data
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            OnModelCreatingPartial(modelBuilder);
+        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
     }
 }
