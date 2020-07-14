@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "060df1f8-fca7-4188-b2e1-64fa147b4050",
+		"name": "WebApplicationCore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Create Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16e44366-06fe-4411-97f8-7ba238fb0db2",
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", function () { ",
+									"    pm.response.to.have.status(201); ",
+									"});",
+									"",
+									"",
+									"console.log(\"employee_id: \" + responseJson.id);",
+									"",
+									"pm.environment.set(\"employee_happy_path_id\", responseJson.id);",
+									"pm.environment.set(\"employee_happy_path_name\", responseJson.lastName);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Test\",\r\n  \"lastName\": \"User\",\r\n  \"birthDate\": \"2000-07-14T20:22:34.640Z\",\r\n  \"country\": \"Argentina\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST Team",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Test Footbal Club 1\",\r\n  \"country\": 1,\r\n  \"city\": \"Test City\",\r\n  \"state\": \"Test State\",\r\n  \"foundationDate\": \"2020-03-13T22:59:02.575Z\",\r\n  \"website\": \"www.testac.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44363/api/teams",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44363",
+									"path": [
+										"api",
+										"teams"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Location",
+									"value": "/api/teams/27"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "api-supported-versions",
+									"value": "1.0"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 03:24:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 27,\n    \"name\": \"Test Footbal Club 1\",\n    \"country\": 1,\n    \"city\": \"Test City\",\n    \"state\": \"Test State\",\n    \"foundationDate\": \"2020-03-13T22:59:02.575Z\",\n    \"stadiumId\": null,\n    \"website\": \"www.testac.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a9305d6-5ba3-4183-b8e3-7bfdcc14cd47",
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Get correct data\", function () {",
+									"    var lastName = pm.variables.get(\"employee_happy_path_name\");",
+									"    pm.expect(responseJson.lastName).to.eql(lastName);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees/{{employee_happy_path_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees",
+								"{{employee_happy_path_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80e6bddf-5b98-44cc-b326-6d92e6348b0f",
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Get records\", function () {",
+									"    pm.expect(responseJson.length).to.be.above(0);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef3bb884-e30d-4327-ae02-cce400db946f",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{employee_happy_path_id}},\t\r\n  \"lastName\": \"{{employee_happy_path_name}}xxx\",\r\n  \"firstName\": \"Test\",\r\n  \"birthDate\": \"2000-07-14T20:22:34.640Z\",\r\n  \"country\": \"Argentina\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6085532-0e53-4132-91e3-3cd788674917",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees/{{employee_happy_path_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees",
+								"{{employee_happy_path_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7bcbf67-0c2c-4ca0-83be-7821260c4c06",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.environment.unset(\"employee_happy_path_id\");",
+									"pm.environment.unset(\"employee_happy_path_name\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/employees/{{employee_happy_path_id}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"employees",
+								"{{employee_happy_path_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

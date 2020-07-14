@@ -28,6 +28,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{74C1BB
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{F9DDCAA6-6E91-4BBB-9D30-7905904BFE47}"
+	ProjectSection(SolutionItems) = preProject
+		TEST_ENV.postman_environment.json = TEST_ENV.postman_environment.json
+		WebApplicationCore.postman_collection.json = WebApplicationCore.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
