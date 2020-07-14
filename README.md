@@ -10,7 +10,10 @@ Issue Management | GitHub
 Tech stack | ASP.Net Core MVC, EF Core, JQuery, Bootstrap, Webpack, AutoMapper
 Database | SQL Server
 Web Server | IIS
-Testing | MSTest, Specflow, Selenium, Moq
+Unit & Integration Testing | MSTest, Moq
+Acceptance Testing | Specflow, Selenium
+API Testing | Postman newman
+Performance Testing | k6
 Build Tools |MSBuild, MSDeploy
 Test Coverage | Coverlet
 Code Metrics | Sonarqube
