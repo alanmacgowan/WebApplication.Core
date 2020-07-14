@@ -19,6 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Core.Tests.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Performance Tests", "Performance Tests", "{300FDCFA-0026-4740-9073-39BEF9EDECB6}"
 	ProjectSection(SolutionItems) = preProject
+		Performance Tests\k6_commands.txt = Performance Tests\k6_commands.txt
 		Performance Tests\k6_script.js = Performance Tests\k6_script.js
 	EndProjectSection
 EndProject
@@ -30,8 +31,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{74C1BB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{F9DDCAA6-6E91-4BBB-9D30-7905904BFE47}"
 	ProjectSection(SolutionItems) = preProject
-		TEST_ENV.postman_environment.json = TEST_ENV.postman_environment.json
-		WebApplicationCore.postman_collection.json = WebApplicationCore.postman_collection.json
+		Postman\postman_commands.txt = Postman\postman_commands.txt
+		Postman\TEST_ENV.postman_environment.json = Postman\TEST_ENV.postman_environment.json
+		Postman\WebApplicationCore.postman_collection.json = Postman\WebApplicationCore.postman_collection.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "newman", "newman", "{DAFF9F89-D3E3-4DC4-BD34-B59DB864AD99}"
+	ProjectSection(SolutionItems) = preProject
+		newman\newman-run-report-2020-07-14-22-50-56-715-0.html = newman\newman-run-report-2020-07-14-22-50-56-715-0.html
 	EndProjectSection
 EndProject
 Global
@@ -71,6 +78,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DAFF9F89-D3E3-4DC4-BD34-B59DB864AD99} = {F9DDCAA6-6E91-4BBB-9D30-7905904BFE47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60F7EE0F-25B2-49E8-B038-E37D564CF48B}

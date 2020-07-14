@@ -9,6 +9,12 @@ dotnet sonarscanner end
 
 =============================
 
-docker-compose build web
-docker-compose up --no-deps -d web
+docker-compose build webapplicationcore-api
+docker-compose up --no-deps -d webapplicationcore-api
+
+
+npm install -g newman
+npm install -g newman-reporter-html
+
+newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html
 

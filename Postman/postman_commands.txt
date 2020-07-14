@@ -1,0 +1,6 @@
+npm install -g newman
+npm install -g newman-reporter-html
+newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html
+
+--for ci server:
+newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html --suppress-exit-code 1
