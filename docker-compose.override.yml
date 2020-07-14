@@ -14,7 +14,7 @@ services:
             - "44348:443"
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - ASPNETCORE_URLS=http://+:80
             - ConnectionString=Server=sqldata;Database=Database;User Id=sa;Password=Pass@word
 
     webapplicationcore-ui:
@@ -23,5 +23,5 @@ services:
             - "44340:443"
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - ASPNETCORE_URLS=http://+:80
             - WebApplicationAPIUrl=http://webapplicationcore-api
