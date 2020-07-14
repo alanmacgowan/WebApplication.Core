@@ -37,9 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{F9DD
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "newman", "newman", "{DAFF9F89-D3E3-4DC4-BD34-B59DB864AD99}"
-	ProjectSection(SolutionItems) = preProject
-		newman\newman-run-report-2020-07-14-22-50-56-715-0.html = newman\newman-run-report-2020-07-14-22-50-56-715-0.html
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

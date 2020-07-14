@@ -7,14 +7,7 @@ dotnet build WebApplication.Core.sln
 dotnet sonarscanner end
 
 
-=============================
-
-docker-compose build webapplicationcore-api
-docker-compose up --no-deps -d webapplicationcore-api
-
-
-npm install -g newman
-npm install -g newman-reporter-html
-
-newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html
-
+-resources:
+https://medium.com/@HoussemDellai/setup-sonarqube-in-a-docker-container-3c3908b624df
+https://medium.com/tribalscale/net-core-code-quality-with-coverlet-and-sonarqube-1372e5bb1b71
+https://medium.com/tribalscale/net-core-code-quality-with-coverlet-and-sonarqube-part-2-141617f83d6f

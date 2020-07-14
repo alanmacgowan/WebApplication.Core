@@ -4,3 +4,9 @@ newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_enviro
 
 --for ci server:
 newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html --suppress-exit-code 1
+
+
+
+-resources:
+https://www.softwaretestinghelp.com/postman-newman/
+https://learning.postman.com/docs/running-collections/using-newman-cli/integration-with-jenkins/
