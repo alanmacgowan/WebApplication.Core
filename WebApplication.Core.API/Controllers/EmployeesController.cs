@@ -46,7 +46,7 @@ namespace WebApplication.Core.API.Controllers
             await _dataContext.SaveChangesAsync();
             if (result != null)
             {
-                return Created("employee", result);
+                return Created("employee", result.Entity);
             }
             else
             {
