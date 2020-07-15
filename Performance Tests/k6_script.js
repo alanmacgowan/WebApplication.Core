@@ -17,8 +17,8 @@ export let options = {
 export default function() {
   group('v1 API testing', function() {
     group('get employees', function() {
-      let res = http.get("https://localhost:44385/api/Employees");
-      check(res, { "status is 200": (r) => r.status === 200 });
+        var res = http.get(`${__ENV.BASE_URL}/api/Employees`);
+        check(res, { "status is 200": (r) => r.status === 200 });
     });
   });
   sleep(1);

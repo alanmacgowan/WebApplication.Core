@@ -1,1 +1,6 @@
-k6 run k6_script.js
+k6 run -e BASE_URL=http://localhost:8048 k6_script.js
+
+
+-resources:
+https://k6.io/docs/testing-guides/automated-performance-testing
+https://mostafa.dev/blog/beginner-s-guide-to-load-testing-with-k6-part-1

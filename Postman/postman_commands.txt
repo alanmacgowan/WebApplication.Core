@@ -1,9 +1,13 @@
 npm install -g newman
 npm install -g newman-reporter-html
 newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html
+or
+newman run WebApplicationCore.postman_collection.json --global-var "BASE_URL=http://localhost:8048"
 
 --for ci server:
 newman run WebApplicationCore.postman_collection.json -e TEST_ENV.postman_environment.json -r html --suppress-exit-code 1
+or 
+newman run WebApplicationCore.postman_collection.json --global-var "BASE_URL=http://localhost:8048" -r html --suppress-exit-code 1
 
 
 
