@@ -21,4 +21,34 @@
     <ProjectReference Include="..\WebApplication.Core.Data\WebApplication.Core.Data.csproj" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <EnvironmentName>Development</EnvironmentName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <EnvironmentName>Production</EnvironmentName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stage|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <EnvironmentName>Staging</EnvironmentName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+    <Content Remove="appsettings.*.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="appsettings.*.json" Exclude="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="Never" />
+    <Content Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="RenameAppsettings" AfterTargets="Publish">
+    <Move SourceFiles="$(PublishDir)\appsettings.$(EnvironmentName).json" DestinationFiles="$(PublishDir)\appsettings.overrides.json" />
+  </Target>
+
 </Project>

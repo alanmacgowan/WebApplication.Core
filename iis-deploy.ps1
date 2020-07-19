@@ -54,7 +54,7 @@ Function Get-Packages{
     $SourcePath = $SourcesFolder + "\WebApplication.Core"
     Set-Location $SourcePath
 
-    & dotnet restore WebApplication.Core.sln
+    dotnet restore WebApplication.Core.sln
 }
 
 Function Build-Solution{
@@ -62,7 +62,7 @@ Function Build-Solution{
     $SourcePath = $SourcesFolder + "\WebApplication.Core"
     Set-Location $SourcePath
 
-    & dotnet build WebApplication.Core.sln --no-restore --configuration Release /p:Version=$Version
+    dotnet build WebApplication.Core.sln --no-restore --configuration Release /p:Version=$Version
 }
 
 Function Build-Webpack{
@@ -79,7 +79,7 @@ Function Run-Tests{
     $SourcePath = $SourcesFolder + "\WebApplication.Core\$ProjectName\"
     Set-Location $SourcePath
 
-    & dotnet test $ProjectName.csproj
+    dotnet test $ProjectName.csproj
 }
 
 Function Deploy-Site{
