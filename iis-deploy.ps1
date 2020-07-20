@@ -6,7 +6,7 @@ Script to build, deploy, test and package .net core web application.
 Script to build, deploy, test and package .net core web application.
 
 .EXAMPLE
-./ii-deploy -Version "1.0.0.0" -Branch "master" -CleanEnvironment $true
+./ii-deploy -Version "1.0.0.0" -Environment "Stage" -Branch "master" -CleanEnvironment $true
 
 #>
 
@@ -19,6 +19,7 @@ Script to build, deploy, test and package .net core web application.
 
 param(
     [Parameter(Mandatory=$true)][String]$Version,
+    [Parameter(Mandatory=$true)][ValidateSet('Debug', 'Stage', 'Release')][String]$Environment,
     [String]$GitRepository = "https://github.com/alanmacgowan/WebApplication.Core.git",
     [String]$Branch = "master",
     [String]$PublishUrl_WEB = "C:\Jenkins_builds\sites\dev",
@@ -57,12 +58,13 @@ Function Get-Packages{
     dotnet restore WebApplication.Core.sln
 }
 
-Function Build-Solution{
-    Write-Host "Building solution" -ForegroundColor Green
-    $SourcePath = $SourcesFolder + "\WebApplication.Core"
+Function Build-Site{
+    Param($SiteName)
+    Write-Host "Building project $SiteName" -ForegroundColor Green
+    $SourcePath = $SourcesFolder + "\WebApplication.Core\$SiteName\"
     Set-Location $SourcePath
 
-    dotnet build WebApplication.Core.sln --no-restore --configuration Release /p:Version=$Version
+    dotnet build $SiteName.csproj --no-restore --configuration $Environment /p:Version=$Version
 }
 
 Function Build-Webpack{
@@ -88,7 +90,7 @@ Function Deploy-Site{
     $SourcePath = $SourcesFolder + "\WebApplication.Core\$SiteName\"
     Set-Location $SourcePath
 
-    dotnet publish $SiteName.csproj --no-build --configuration Release -o $PublishUrl
+    dotnet publish $SiteName.csproj --no-build --configuration $Environment -o $PublishUrl
 }
 
 Function Smoke-Test{
@@ -97,7 +99,7 @@ Function Smoke-Test{
     If ($Result.StatusCode -ne 200) {
       Write-Error "Did not get 200 OK"
     } Else{
-      Write-Host "Successfully connect." -ForegroundColor Green  
+      Write-Host "Successfully connect $SiteUrl." -ForegroundColor Green  
     }
 }
 
@@ -113,17 +115,19 @@ Function Publish-Site{
     
         Build-Webpack
 
-        Build-Solution
+        Build-Site "WebApplication.Core.UI"
     
+        Build-Site "WebApplication.Core.API"
+
         Run-Tests "WebApplication.Core.Tests.Unit"
 
         Deploy-Site "WebApplication.Core.UI" $PublishUrl_WEB
 
         Deploy-Site "WebApplication.Core.API" $PublishUrl_API
 
-        # Smoke-Test "http://localhost:8090/"
+        Smoke-Test "http://localhost:8090/"
 
-        # Smoke-Test "http://localhost:4091/swagger/index.html"
+        Smoke-Test "http://localhost:4091/swagger/index.html"
 
         # Run-Tests "WebApplication.Core.Tests.Acceptance"
     <#}
