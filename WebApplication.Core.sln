@@ -41,9 +41,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "newman", "newman", "{DAFF9F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{2609F321-E243-438E-882F-CB19F12FB617}"
 	ProjectSection(SolutionItems) = preProject
-		iis-deploy.ps1 = iis-deploy.ps1
-		Jenkinsfile = Jenkinsfile
-		sonarqube_coverlet.txt = sonarqube_coverlet.txt
+		Build\iis-deploy.ps1 = Build\iis-deploy.ps1
+		Build\Jenkinsfile = Build\Jenkinsfile
+		Build\sonarqube_coverlet.txt = Build\sonarqube_coverlet.txt
 	EndProjectSection
 EndProject
 Global
