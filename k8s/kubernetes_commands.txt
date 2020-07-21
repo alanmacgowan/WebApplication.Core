@@ -1,4 +1,13 @@
 
+#to convert docker-compose.yml to kubernetes using kompose
+#install kompose using choco:
+choco install kubernetes-kompose
+
+#convert file:
+kompose convert --out k8s/docker-compose.yml
+
+#-------------
+
 # create pods
 kubectl apply -f ./k8s
 
