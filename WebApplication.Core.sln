@@ -48,8 +48,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{2609F321
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{B9B3CE6E-F818-46B9-B8A4-303573530F43}"
 	ProjectSection(SolutionItems) = preProject
-		k8s\docker-compose.yml = k8s\docker-compose.yml
+		k8s\api.deployment.yml = k8s\api.deployment.yml
+		k8s\api.service.yml = k8s\api.service.yml
 		k8s\kubernetes_commands.txt = k8s\kubernetes_commands.txt
+		k8s\sqlserver.deployment.yml = k8s\sqlserver.deployment.yml
+		k8s\sqlserver.service.yml = k8s\sqlserver.service.yml
+		k8s\ui.deployment.yml = k8s\ui.deployment.yml
+		k8s\ui.service.yml = k8s\ui.service.yml
 	EndProjectSection
 EndProject
 Global
