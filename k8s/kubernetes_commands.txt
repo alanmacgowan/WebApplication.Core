@@ -1,0 +1,17 @@
+
+# create pods
+kubectl apply -f ./k8s
+
+#check that the pods were created successfully
+kubectl get pods
+
+#set port forwarding for ui container
+kubectl port-forward [ui_container_pod_id] 8080:80
+
+#need to wait until sqlserver pod is initialized
+#need to restart api pod to initialize db :add logic to wait for sqlserver pod
+
+#navigate to http://localhost:8080
+
+#delete pods
+kubectl delete -f ./k8s

@@ -46,6 +46,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{2609F321
 		Build\sonarqube_coverlet.txt = Build\sonarqube_coverlet.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{B9B3CE6E-F818-46B9-B8A4-303573530F43}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\docker-compose.yml = k8s\docker-compose.yml
+		k8s\kubernetes_commands.txt = k8s\kubernetes_commands.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
