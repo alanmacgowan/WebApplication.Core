@@ -1,3 +1,10 @@
+#install k6 with msi:
+-https://k6.io/docs/getting-started/installation
+or using choco:
+-choco install k6
+or docker image:
+-docker pull loadimpact/k6
+
 k6 run -e BASE_URL=http://localhost:8048 k6_script.js
 
 
