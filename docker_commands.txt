@@ -1,6 +1,6 @@
 
 #build images
-dpcker-compose build
+docker-compose build
 
 #run applications
 #dev
