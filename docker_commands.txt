@@ -1,7 +1,17 @@
 
+#build images
 dpcker-compose build
-docker-compose up -d
 
--to rebuild a specific image:
+#run applications
+#dev
+docker-compose up -d
+#staging
+docker-compose -f docker-compose.yml -f docker-compose.staging.yml up -d
+#prod
+docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d
+
+#navigate to http://localhost:8040/
+
+#to rebuild a specific image:
 docker-compose build webapplicationcore-api
 docker-compose up --no-deps -d webapplicationcore-api
