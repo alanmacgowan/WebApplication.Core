@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Polly;
 using System;
 
 namespace WebApplication.Core.API.Infrastructure.Extensions
@@ -9,20 +11,32 @@ namespace WebApplication.Core.API.Infrastructure.Extensions
     public static class HostExtensions
     {
 
-        public static IHost MigrateDatabase<T>(this IHost webHost) where T : DbContext
+        public static IHost MigrateDatabase<TContext>(this IHost webHost) where TContext : DbContext
         {
             using (var scope = webHost.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<TContext>>();
+                var context = services.GetService<TContext>();
                 try
                 {
-                    var db = services.GetRequiredService<T>();
-                    db.Database.Migrate();
+                    logger.LogInformation("Migrating database associated with context {DbContextName}", typeof(TContext).Name);
+
+                    var retry = Policy.Handle<SqlException>()
+                                      .WaitAndRetry(new TimeSpan[]
+                                      {
+                                        TimeSpan.FromSeconds(60),
+                                        TimeSpan.FromSeconds(60),
+                                        TimeSpan.FromSeconds(120),
+                                      });
+
+                    retry.Execute(() => context.Database.Migrate());
+
+                    logger.LogInformation("Migrated database associated with context {DbContextName}", typeof(TContext).Name);
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating the database.");
+                    logger.LogError(ex, "An error occurred while migrating the database used on context {DbContextName}", typeof(TContext).Name);
                 }
             }
             return webHost;

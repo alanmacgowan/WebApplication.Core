@@ -1,6 +1,11 @@
 param(
-	[ValidateSet('development', 'staging', 'production')][String]$environment = "development"
+	[ValidateSet('development', 'staging', 'production')][String]$environment = "development",
+	[bool]$build = $False
 )
+
+If($build){
+	docker-compose build
+}
 
 If($environment -eq "development"){
 	docker-compose up -d
