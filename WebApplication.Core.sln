@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{B9B3CE6E-F81
 	ProjectSection(SolutionItems) = preProject
 		k8s\api.deployment.yml = k8s\api.deployment.yml
 		k8s\api.service.yml = k8s\api.service.yml
+		k8s\deploy.ps1 = k8s\deploy.ps1
 		k8s\kubernetes_commands.txt = k8s\kubernetes_commands.txt
 		k8s\sqlserver.deployment.yml = k8s\sqlserver.deployment.yml
 		k8s\sqlserver.service.yml = k8s\sqlserver.service.yml
