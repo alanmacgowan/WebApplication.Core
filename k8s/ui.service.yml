@@ -10,15 +10,13 @@ metadata:
     io.kompose.service: webapplicationcore-ui
   name: webapplicationcore-ui
 spec:
-  ports:
-  - name: "8040"
-    port: 8040
-    targetPort: 80
-  - name: "44340"
-    port: 44340
-    targetPort: 443
+  type: NodePort
   selector:
     io.kompose.service: webapplicationcore-ui
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30001
 status:
   loadBalancer: {}
 

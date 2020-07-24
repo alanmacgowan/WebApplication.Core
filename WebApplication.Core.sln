@@ -25,7 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Performance Tests", "Perfor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{74C1BB48-1895-4787-B440-275469634F27}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose-build.ps1 = docker-compose-build.ps1
 		docker-compose-up.ps1 = docker-compose-up.ps1
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.production.yml = docker-compose.production.yml
@@ -54,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{B9B3CE6E-F81
 	ProjectSection(SolutionItems) = preProject
 		k8s\api.deployment.yml = k8s\api.deployment.yml
 		k8s\api.service.yml = k8s\api.service.yml
-		k8s\deploy.ps1 = k8s\deploy.ps1
+		k8s\kubernetes-deploy.ps1 = k8s\kubernetes-deploy.ps1
 		k8s\kubernetes_commands.txt = k8s\kubernetes_commands.txt
 		k8s\sqlserver.deployment.yml = k8s\sqlserver.deployment.yml
 		k8s\sqlserver.service.yml = k8s\sqlserver.service.yml
