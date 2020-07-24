@@ -24,7 +24,7 @@ Other | docker, docker-compose, Kubernetes
 # Setup:
 
 ## Docker Compose:
-docker-compose-up.ps1: Build images and start services for different environments.
+*docker-compose-up.ps1*: Build images and start services for different environments.
 ```
 ./docker-compose-up.ps1 -environment "staging"
 ```
@@ -38,7 +38,8 @@ docker-compose down
 
 ## Kubernetes:
 k8s folder contains the deployment and service config files for Kubernetes.
-kubernetes-deploy.ps1: Build, tag and push (optional) images to Dockerhub and deploy to a local kubernetes cluster.
+
+*kubernetes-deploy.ps1*: Build, tag and push (optional) images to Dockerhub and deploy to a local kubernetes cluster.
 ```
 cd webapplication.core\k8s
 ./kubernetes-deploy.ps1 -dockerUser user -dockerPassword pass
@@ -53,7 +54,7 @@ kubectl delete -f ./
 ```
 
 ## Local IIS deployment:
-iis-deploy.ps1: Powershell script to build, deploy, test and package .net core web application to a local IIS.
+*iis-deploy.ps1*: Powershell script to build, deploy, test and package .net core web application to a local IIS.
 
 From Powershell:
 ```
@@ -64,4 +65,4 @@ This assumes that a web site is already setup on local IIS.
 ## Continuous Integration:
 
 #### Jenkins:
-jenkinsfile
+*jenkinsfile*
