@@ -12,18 +12,18 @@ Database | SQL Server
 Web Server | IIS
 Unit & Integration Testing | MSTest, Moq
 Acceptance Testing | Specflow, Selenium
-API Testing | Postman newman
+API Testing | Postman, newman
 Performance Testing | k6
 Build Tools |MSBuild, MSDeploy
 Test Coverage | Coverlet
 Code Metrics | Sonarqube
 Dependencies | Nuget, npm
 Scripts | Powershell
-Other | docker, docker-compose, Kubernetes
+Containers | Docker, Docker Compose, Kubernetes
 
-# Setup:
+# Setup
 
-## Docker Compose:
+## Docker Compose
 *docker-compose-up.ps1*: Build images and start services for different environments.
 ```
 ./docker-compose-up.ps1 -environment "staging"
@@ -36,7 +36,7 @@ To stop:
 docker-compose down
 ```
 
-## Kubernetes:
+## Kubernetes
 k8s folder contains the deployment and service config files for Kubernetes.
 
 *kubernetes-deploy.ps1*: Build, tag and push (optional) images to Dockerhub and deploy to a local kubernetes cluster.
@@ -53,16 +53,16 @@ cd webapplication.core\k8s
 kubectl delete -f ./
 ```
 
-## Local IIS deployment:
+## Local IIS deployment
 *iis-deploy.ps1*: Powershell script to build, deploy, test and package .net core web application to a local IIS.
 
 From Powershell:
 ```
-./iis-deploy -Version "1.0.0.0" -Environment "Stage" -Branch "master" -CleanEnvironment $true
+./iis-deploy.ps1 -Version "1.0.0.0" -Environment "Stage" -Branch "master" -CleanEnvironment $true
 ```
 This assumes that a web site is already setup on local IIS.
 
-## Continuous Integration:
+## Continuous Integration
 
-#### Jenkins:
+#### Jenkins
 *jenkinsfile*
