@@ -1,6 +1,6 @@
 param(
 	[ValidateSet('development', 'staging', 'production')][String]$environment = "development",
-	[bool]$build = $False
+	[bool]$build = $True
 )
 
 If($build){

@@ -4,8 +4,8 @@ services:
     sqldata:
         container_name: 'sqldata'  
         image: mcr.microsoft.com/mssql/server:2017-latest
- #       networks:
- #         - webapplicationcore-network
+        networks:
+          - webapplicationcore-network
 
     webapplicationcore-api:
         container_name: 'webapplicationcore-api'
@@ -15,8 +15,8 @@ services:
             dockerfile: ./WebApplication.Core.API/Dockerfile
         depends_on:
             - sqldata
- #       networks:
- #         - webapplicationcore-network
+        networks:
+          - webapplicationcore-network
 
     webapplicationcore-ui:
         container_name: 'webapplicationcore-ui'
@@ -27,9 +27,9 @@ services:
         depends_on:
             - sqldata
             - webapplicationcore-api
- #       networks:
- #         - webapplicationcore-network
+        networks:
+          - webapplicationcore-network
 
-# networks:
-#  webapplicationcore-network:
-#    driver: bridge
+networks:
+    webapplicationcore-network:
+        driver: bridge
