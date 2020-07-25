@@ -20,7 +20,7 @@ namespace WebApplication.Core.API.Infrastructure.Extensions
                 var context = services.GetService<TContext>();
                 try
                 {
-                    logger.LogInformation("Migrating database associated with context {DbContextName}", typeof(TContext).Name);
+                    logger.LogInformation($"Migrating database associated with context {typeof(TContext).Name} - {context.Database.GetDbConnection().ConnectionString}");
 
                     var retry = Policy.Handle<SqlException>()
                                       .WaitAndRetry(new TimeSpan[]

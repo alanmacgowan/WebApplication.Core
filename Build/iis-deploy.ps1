@@ -6,11 +6,11 @@ Script to build, deploy, test and package .net core web application.
 Script to build, deploy, test and package .net core web application.
 
 .EXAMPLE
-./ii-deploy -Version "1.0.0.0" -Environment "Stage" -Branch "master" -CleanEnvironment $true
+./iis-deploy -Version "1.0.0.0" -Environment "Stage" -Branch "master" -CleanEnvironment $true
 
 #>
 
-#Script ii-deploy
+#Script iis-deploy
 #Creator Alan Macgowan
 #Date 07/19/2020
 #Updated
