@@ -22,6 +22,23 @@ Scripts | Powershell
 Containers | Docker, Docker Compose, Kubernetes
 
 # Setup
+## Docker
+Can use images from Dockerhub:
+```
+docker network create webappnet
+docker run -e "ASPNETCORE_ENVIRONMENT=Development" -e "WebApplicationAPIUrl=http://webapplicationcore-api" -p 8040:80 --name webapplicationcore-ui --network webappnet -d alanmacgowan/webapplication.core.ui
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Pass@word" -p 5433:1433 --name sqldata --network webappnet -d mcr.microsoft.com/mssql/server:2017-latest
+docker run -e "ASPNETCORE_ENVIRONMENT=Development" -e "ConnectionString=Server=sqldata;Database=Database;User Id=sa;Password=Pass@word" -p 8048:80 --name webapplicationcore-api --network webappnet -d alanmacgowan/webapplication.core.api
+```
+Sql Server container might take a couple of minutes to start, API has retry logic with Polly in order to run ef migrations.
+Navigate to http://localhost:8040/ for UI and http://localhost:8048/swagger/index for API.
+
+To stop:
+```
+docker stop webapplicationcore-ui
+docker stop webapplicationcore-api
+docker stop sqldata
+```
 
 ## Docker Compose
 *docker-compose-up.ps1*: Build images and start services for different environments.
