@@ -7,7 +7,7 @@ Area |Tools
 CI | Jenkins 
 Source Code | GitHub
 Issue Management | GitHub
-Tech stack | ASP.Net Core MVC, EF Core, JQuery, Bootstrap, Webpack, AutoMapper
+Tech stack | ASP.Net Core MVC, EF Core, JQuery, Bootstrap, Webpack, AutoMapper, FluentValidation, Polly
 Database | SQL Server
 Web Server | IIS
 Unit & Integration Testing | MSTest, Moq
@@ -25,7 +25,7 @@ Containers | Docker, Docker Compose, Kubernetes
 
 git clone https://github.com/alanmacgowan/WebApplication.Core.git
 
-## Dotnet:
+## Dotnet
 *dotnet-run.bat*: starts API and UI applications.
 Assumes there is a database already in local SQL Server named [Database]
 ```
