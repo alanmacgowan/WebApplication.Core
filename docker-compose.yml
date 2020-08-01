@@ -1,34 +1,30 @@
 version: '3.4'
 
 services:
-    sqldata:
-        container_name: 'sqldata'  
-        image: mcr.microsoft.com/mssql/server:2017-latest
-        networks:
-          - webapplicationcore-network
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    networks:
+      - webapplicationcore-network
 
-    webapplicationcore-api:
-        container_name: 'webapplicationcore-api'
-        image: ${DOCKER_REGISTRY-}webapplication.core.api
-        build: 
-            context: .
-            dockerfile: ./WebApplication.Core.API/Dockerfile
-        depends_on:
-            - sqldata
-        networks:
-          - webapplicationcore-network
+  webapplication.core.ui:
+    image: ${DOCKER_REGISTRY-}webapplicationcoreui
+    build:
+      context: .
+      dockerfile: WebApplication.Core.UI/Dockerfile
+    depends_on:
+      - webapplication.core.api
+    networks:
+      - webapplicationcore-network
 
-    webapplicationcore-ui:
-        container_name: 'webapplicationcore-ui'
-        image: ${DOCKER_REGISTRY-}webapplication.core.ui
-        build: 
-            context: .
-            dockerfile: ./WebApplication.Core.UI/Dockerfile
-        depends_on:
-            - sqldata
-            - webapplicationcore-api
-        networks:
-          - webapplicationcore-network
+  webapplication.core.api:
+    image: ${DOCKER_REGISTRY-}webapplicationcoreapi
+    build:
+      context: .
+      dockerfile: WebApplication.Core.API/Dockerfile
+    depends_on:
+      - sqldata
+    networks:
+      - webapplicationcore-network
 
 networks:
     webapplicationcore-network:

@@ -1,27 +1,41 @@
 version: '3.4'
 
 services:
-    sqldata:
-        environment:
-            - SA_PASSWORD=Pass@word
-            - ACCEPT_EULA=Y
-        ports:
-            - "5433:1433"
+  sqldata:
+#    container_name: 'sqldata-dev'  
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433" 
+    volumes:
+      - mssql-server-data:/var/opt/mssql/data
 
-    webapplicationcore-api:
-        ports:
-            - "8048:80"
-            - "44348:443"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-            - ASPNETCORE_URLS=http://+:80
-            - ConnectionString=Server=sqldata;Database=Database;User Id=sa;Password=Pass@word
+  webapplication.core.ui:
+#    container_name: 'webapplicationcore-ui-dev'  
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - WebApplicationAPIUrl=http://webapplication.core.api
+    ports:
+      - "8048:80"
+      - "44348:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-    webapplicationcore-ui:
-        ports:
-            - "8040:80"
-            - "44340:443"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-            - ASPNETCORE_URLS=http://+:80
-            - WebApplicationAPIUrl=http://webapplicationcore-api
+  webapplication.core.api:
+#    container_name: 'webapplicationcore-api-dev'  
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionString=Server=sqldata;Database=Database;User Id=sa;Password=Pass@word
+    ports:
+      - "8040:80"
+      - "44340:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+volumes:
+  mssql-server-data:

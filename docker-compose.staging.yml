@@ -1,27 +1,32 @@
 version: '3.4'
 
 services:
-    sqldata:
-        environment:
-            - SA_PASSWORD=Pass@word
-            - ACCEPT_EULA=Y
-        ports:
-            - "5433:1433"
+  sqldata:
+    environment:
+        - SA_PASSWORD=Pass@word
+        - ACCEPT_EULA=Y
+    ports:
+        - "5433:1433"
+    volumes:
+        - mssql-server-data-qa:/var/opt/mssql/data
 
-    webapplicationcore-api:
-        ports:
-            - "8048:80"
-            - "44348:443"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Staging
-            - ASPNETCORE_URLS=http://+:80
-            - ConnectionString=Server=sqldata;Database=DatabaseQA;User Id=sa;Password=Pass@word
+  webapplication.core.api:
+    ports:
+        - "8070:80"
+        - "44349:443"
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Staging
+        - ASPNETCORE_URLS=http://+:80
+        - ConnectionString=Server=sqldata;Database=DatabaseQA;User Id=sa;Password=Pass@word
 
-    webapplicationcore-ui:
-        ports:
-            - "8040:80"
-            - "44340:443"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Staging
-            - ASPNETCORE_URLS=http://+:80
-            - WebApplicationAPIUrl=http://webapplicationcore-api
+  webapplication.core.ui:
+    ports:
+        - "8072:80"
+        - "44342:443"
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Staging
+        - ASPNETCORE_URLS=http://+:80
+        - WebApplicationAPIUrl=http://webapplication.core.api
+
+volumes:
+  mssql-server-data-qa:
