@@ -33,7 +33,7 @@ pipeline {
 				}	
                 stage('Build'){
                    steps{
-                      bat "dotnet build WebApplication.Core.sln --no-restore --configuration Release /p:Version=${BUILD_NUMBER}"
+                      bat "dotnet build WebApplication.Core.sln --no-restore --configuration Stage /p:Version=${BUILD_NUMBER}"
                     }
                 }
                 stage('Test: Unit Test'){
@@ -45,12 +45,12 @@ pipeline {
 					parallel {
                         stage('Publish API: QA'){
                              steps{
-                               bat "dotnet publish WebApplication.Core.API\\WebApplication.Core.API.csproj --no-build --configuration Release -o C:\\Jenkins_builds\\sites\\devAPI"
+                               bat "dotnet publish WebApplication.Core.API\\WebApplication.Core.API.csproj --no-build --configuration Stage -o C:\\Jenkins_builds\\sites\\devAPI"
                             }
                         }
                         stage('Publish UI: QA'){
                              steps{
-                               bat "dotnet publish WebApplication.Core.UI\\WebApplication.Core.UI.csproj --no-build --configuration Release -o C:\\Jenkins_builds\\sites\\dev"
+                               bat "dotnet publish WebApplication.Core.UI\\WebApplication.Core.UI.csproj --no-build --configuration Stage -o C:\\Jenkins_builds\\sites\\dev"
                             }
                         }
 					}
