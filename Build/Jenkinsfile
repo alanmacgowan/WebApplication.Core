@@ -38,7 +38,8 @@ pipeline {
                 }
                 stage('Test: Unit Test'){
                    steps {
-                     bat "dotnet test WebApplication.Core.Tests.Unit\\WebApplication.Core.Tests.Unit.csproj"
+                     bat "dotnet test WebApplication.Core.Tests.Unit\\WebApplication.Core.Tests.Unit.csproj  -l:trx;LogFileName=Results_${env.BUILD_NUMBER}.trx --collect:\"XPlat Code Coverage\""
+                    step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
                     }
                 }
                 stage('Publish QA'){
