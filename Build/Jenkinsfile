@@ -33,7 +33,7 @@ pipeline {
 				}	
                 stage('Build'){
                    steps{
-                      bat "dotnet build WebApplication.Core.sln --no-restore --configuration Stage /p:Version=${BUILD_NUMBER}"
+                      bat "dotnet build WebApplication.Core.sln --no-restore --configuration Stage /p:AssemblyVersion=${env.RELEASE_VERSION}.${env.BUILD_NUMBER}"
                     }
                 }
                 stage('Test: Unit Test'){
