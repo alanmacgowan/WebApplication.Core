@@ -1,4 +1,13 @@
-dotnet test WebApplication.Core.Tests.Unit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+dotnet test WebApplication.Core.Tests.Unit.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover
+
+dotnet test WebApplication.Core.Tests.Unit.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+
+dotnet test WebApplication.Core.Tests.Unit.csproj -l:trx;LogFileName=Results_1.trx --collect:"XPlat Code Coverage"
+
+dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
+.\tools\reportgenerator.exe -reports:.\WebApplication.Core.Tests.Unit\TestResults\coverage.info -targetdir:.\WebApplication.Core.Tests.Unit\TestResults\
+start .\TestResults\index.htm
+
 
 dotnet sonarscanner begin /k:"webapplication.core" /d:sonar.host.url=http://localhost:9000 /d:sonar.cs.opencover.reportsPaths=WebApplication.Core.Tests.Unit/coverage.opencover.xml /d:sonar.coverage.exclusions=”**Test*.cs”
 
@@ -11,3 +20,7 @@ dotnet sonarscanner end
 https://medium.com/@HoussemDellai/setup-sonarqube-in-a-docker-container-3c3908b624df
 https://medium.com/tribalscale/net-core-code-quality-with-coverlet-and-sonarqube-1372e5bb1b71
 https://medium.com/tribalscale/net-core-code-quality-with-coverlet-and-sonarqube-part-2-141617f83d6f
+https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?WT.mc_id=docsmsft-twitter&tabs=windows
+https://blog.dangl.me/archive/unit-testing-and-code-coverage-with-jenkins-and-net-core-2017-edition/
+https://codeburst.io/code-coverage-in-net-core-projects-c3d6536fd7d7
+https://dotnetthoughts.net/code-coverage-in-netcore-with-coverlet/
