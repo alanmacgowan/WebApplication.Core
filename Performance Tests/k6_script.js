@@ -6,7 +6,7 @@ export let options = {
   vus: 100,
   stages: [
     { duration: "30s", target: 10 },
-    { duration: "4m", target: 100 },
+    { duration: "30s", target: 100 },
     { duration: "30s", target: 0 }
   ],
   thresholds: {

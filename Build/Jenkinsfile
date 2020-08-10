@@ -66,29 +66,43 @@ pipeline {
 					parallel {
         				stage('Test: Integration Test'){
                             steps {
-                                echo "Test: Integration Test"
-                               //bat "dotnet test WebApplication.Core.Tests.Integration\\WebApplication.Core.Tests.Integration.csproj"
+                                dir('WebApplication.Core.Tests.Integration')
+                                {
+                                    bat """
+                                        set BASE_URL=http://localhost:8090
+                                        set WebApplication_ConnectionString=\"Data Source=localhost; Initial Catalog=DatabaseQA; Integrated Security=True;\"
+                                        dotnet test WebApplication.Core.Tests.Integration.csproj
+                                    """
+                                } 
                             }
                         }
         				stage('Test: Acceptance test') {
         				    steps {
-        				        dir('WebApplication.Core.Tests.Acceptance\\bin\\Release')
+        				        dir('WebApplication.Core.Tests.Acceptance')
                                 {
-                                    //bat "dotnet test WebApplication.Core.Tests.Acceptance\\WebApplication.Core.Tests.Acceptance.csproj"
-                                   
-                                    //bat "\"${VSTest}\" \"WebApplication.Tests.Acceptance.dll\" /Logger:trx;LogFileName=Results_${env.BUILD_NUMBER}.trx /Framework:Framework45"
+                                    bat """
+                                        set BASE_URL=http://localhost:8090
+                                        set WebApplication_ConnectionString=\"Data Source=localhost; Initial Catalog=DatabaseQA; Integrated Security=True;\"
+                                        dotnet test WebApplication.Core.Tests.Acceptance.csproj
+                                    """
                                 }
                                 //step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
                             }
                         }                        
         				stage('Test: Performance Test'){
                             steps {
-                                echo "Test: Performance Test"
+                                dir('Performance Tests')
+                                {
+                                    bat "k6 run -e BASE_URL=http://localhost:4091 k6_script.js"
+                                }
                             }
                         }
         				stage('Test: API Test'){
                             steps {
-                                echo "Test: API Test"
+                                dir('Postman')
+                                {
+                                    bat "newman run WebApplicationCore.postman_collection.json --global-var \"BASE_URL=http://localhost:4091\" -r html --suppress-exit-code 1"
+                                }
                             }
                         }                        
 					}
