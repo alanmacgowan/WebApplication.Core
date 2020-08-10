@@ -16,6 +16,20 @@ namespace WebApplication.Core.Tests.Acceptance.Utils
     public static class DBUtils
     {
 
+
+        public static string ConnectionString
+        {
+            get
+            {
+                var value = Environment.GetEnvironmentVariable("WebApplication_ConnectionString");
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = (ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)).ConnectionStrings.ConnectionStrings["WebApplication_ConnectionString"].ConnectionString;
+                }
+                return value;
+            }
+        }
+
         private static void ExecuteSqlScript(string scriptText)
         {
             if (string.IsNullOrEmpty(scriptText))
@@ -24,9 +38,7 @@ namespace WebApplication.Core.Tests.Acceptance.Utils
             var _sqlScriptSplitRegEx = new Regex(@"^\s*GO\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
             var scripts = _sqlScriptSplitRegEx.Split(scriptText);
 
-            var connString = (ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)).ConnectionStrings.ConnectionStrings["WebApplication_ConnectionString"].ConnectionString;
-
-            using (var conn = new SqlConnection(connString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
 

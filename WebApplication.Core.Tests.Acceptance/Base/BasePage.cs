@@ -30,7 +30,12 @@ namespace WebApplication.Core.Tests.Acceptance.Base
         {
             get
             {
-                return (ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)).AppSettings.Settings["BASE_URL"].Value;
+                var value = Environment.GetEnvironmentVariable("BASE_URL");
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = (ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)).AppSettings.Settings["BASE_URL"].Value;
+                }
+                return value;
             }
         }
 
