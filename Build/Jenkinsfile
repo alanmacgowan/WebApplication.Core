@@ -101,7 +101,7 @@ pipeline {
                             steps {
                                 dir('Postman')
                                 {
-                                    bat "newman run WebApplicationCore.postman_collection.json --global-var \"BASE_URL=http://localhost:4091\" -r html --suppress-exit-code 1"
+                                    bat "newman run WebApplicationCore.postman_collection.json --global-var \"BASE_URL=http://localhost:4091\" --bail"
                                 }
                             }
                         }                        

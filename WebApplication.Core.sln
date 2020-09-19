@@ -54,6 +54,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{B9B3CE6E-F81
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9ADC275F-25CD-45F4-914F-254593B29455}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core.Benchmarking", "WebApplication.Core.Benchmarking\WebApplication.Core.Benchmarking.csproj", "{673BFED2-C749-4B9B-A7F8-B9934798CFFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,12 @@ Global
 		{9ADC275F-25CD-45F4-914F-254593B29455}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9ADC275F-25CD-45F4-914F-254593B29455}.Stage|Any CPU.ActiveCfg = Stage|Any CPU
 		{9ADC275F-25CD-45F4-914F-254593B29455}.Stage|Any CPU.Build.0 = Stage|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Stage|Any CPU.ActiveCfg = Debug|Any CPU
+		{673BFED2-C749-4B9B-A7F8-B9934798CFFC}.Stage|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
