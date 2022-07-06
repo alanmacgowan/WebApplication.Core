@@ -32,7 +32,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
-    "jquery-validation": "^1.17.0",
+    "jquery-validation": "^1.19.5",
     "jquery-validation-unobtrusive": "^3.2.6",
     "popper.js": "^1.16.1"
   },
